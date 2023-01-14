@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Flex, Stack } from '@chakra-ui/react';
+import { Button, Flex, Stack } from '@chakra-ui/react';
 
 import { ScholarshipsLogo } from '../Icons/ScholarshipsLogo';
 
