@@ -1,21 +1,42 @@
-import "@/styles/globals.scss";
+import { ChakraProvider } from '@chakra-ui/react';
+import { NextComponentType } from 'next';
+import type { AppProps as NextAppProps } from 'next/app';
+import { Inter } from '@next/font/google';
+import { NextFont } from '@next/font/dist/types';
 
-import Head from "next/head";
+import { CoreLayout } from '@/common/components/CoreLayout';
+import { PageHead } from '@/common/components/PageHead';
 
-import { CoreLayout } from "@/common/components/CoreLayout";
-import { PageHead } from "@/common/components/PageHead";
+const inter: NextFont = Inter({
+  variable: '--inter-font',
+});
 
-export const App = ({ Component, pageProps }) => {
-  const Layout = Component.layout ? Component.layout : CoreLayout;
+type ComponentProps = {
+  layout?: () => JSX.Element;
+} & NextComponentType;
+
+type AppProps<C> = {
+  Component: C;
+} & NextAppProps;
+
+export const App = ({ Component, pageProps }: AppProps<ComponentProps>) => {
+  // Use default Layout.tsx component, or specify your own layout in the page
+  // by doing PageA.layout = CustomLayoutComponent;
+  const Layout = Component.layout ?? CoreLayout;
+
   return (
     <>
-      <Head>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+      <style global jsx>{`
+        :root {
+          --inter-font: ${inter.style.fontFamily};
+        }
+      `}</style>
+      <ChakraProvider>
         <PageHead />
-      </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ChakraProvider>
     </>
   );
 };

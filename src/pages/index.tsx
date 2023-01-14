@@ -1,16 +1,21 @@
-import { PageHead } from "@/common/components/PageHead";
+import { Box } from '@chakra-ui/react';
 
-export default function Home() {
+import { PageHead } from '@/common/components/PageHead';
+
+// TODO: overwrite tailwind class with chakra UI
+const Home = () => {
   return (
     <div className="h-full">
       <PageHead
-        append={false}
+        removeTitleAppend
         description="Home page description"
         name="Home"
       />
       <section className="grid place-content-center h-full">
-        <span>Hello world</span>
+        <Box bg="red.200">Hello world</Box>
       </section>
     </div>
   );
-}
+};
+
+export default Home;

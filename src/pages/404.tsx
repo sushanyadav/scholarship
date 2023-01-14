@@ -1,4 +1,5 @@
-const Error404 = (): JSX.Element => {
+// TODO: overwrite tailwind class with chakra UI
+const Error404 = () => {
   return (
     <div className="container bg-white">
       <p className="text-base font-semibold text-gray-800">
