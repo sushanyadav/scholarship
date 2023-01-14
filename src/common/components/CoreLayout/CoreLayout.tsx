@@ -1,6 +1,12 @@
 import { Box } from '@chakra-ui/react';
 
-// TODO: overwrite tailwind class with chakra UI
+import { Nav } from './Nav';
+
 export const CoreLayout = ({ children }) => {
-  return <Box className="min-h-full h-full relative">{children}</Box>;
+  return (
+    <>
+      <Nav />
+      <Box as="main">{children}</Box>
+    </>
+  );
 };
