@@ -3,6 +3,7 @@ import { NextComponentType } from 'next';
 import type { AppProps as NextAppProps } from 'next/app';
 import { Inter } from '@next/font/google';
 import { NextFont } from '@next/font/dist/types';
+import { SessionProvider } from 'next-auth/react';
 
 import { CoreLayout } from '@/common/components/CoreLayout';
 import { PageHead } from '@/common/components/PageHead';
@@ -19,13 +20,16 @@ type AppProps<C> = {
   Component: C;
 } & NextAppProps;
 
-export const App = ({ Component, pageProps }: AppProps<ComponentProps>) => {
+export const App = ({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps<ComponentProps>) => {
   // Use default Layout.tsx component, or specify your own layout in the page
   // by doing PageA.layout = CustomLayoutComponent;
   const Layout = Component.layout ?? CoreLayout;
 
   return (
-    <>
+    <SessionProvider session={session}>
       <style global jsx>{`
         :root {
           --inter-font: ${inter.style.fontFamily};
@@ -37,7 +41,7 @@ export const App = ({ Component, pageProps }: AppProps<ComponentProps>) => {
           <Component {...pageProps} />
         </Layout>
       </ChakraProvider>
-    </>
+    </SessionProvider>
   );
 };
 

@@ -1,4 +1,5 @@
 import { Box, Button, Center, Heading, Text } from '@chakra-ui/react';
+import { signIn } from 'next-auth/react';
 
 import { BuildingHouseIcon, UsersIcon } from '@/common/components/Icons';
 
@@ -47,7 +48,15 @@ export const SignInAsSection = ({ selectedSignInOption }) => {
         We use your Google account to let you login securely without passwords.
       </Text>
       <Center>
-        <Button colorScheme="purple" mx="auto">
+        <Button
+          colorScheme="purple"
+          mx="auto"
+          onClick={() =>
+            signIn('google', {
+              callbackUrl: '/home',
+            })
+          }
+        >
           Login with Google
         </Button>
       </Center>

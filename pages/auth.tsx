@@ -1,5 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { useState } from 'react';
+import { getProviders } from 'next-auth/react';
 
 import { HORIZONTAL_PADDING } from '@/common/components/CoreLayout/Nav';
 import { ChevronLeftIcon } from '@/common/components/Icons';
