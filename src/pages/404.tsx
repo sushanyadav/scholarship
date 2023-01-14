@@ -1,11 +1,21 @@
-// TODO: overwrite tailwind class with chakra UI
+import { Grid, Heading, Text } from '@chakra-ui/react';
+import Link from 'next/link';
+
 const Error404 = () => {
   return (
-    <div className="container bg-white">
-      <p className="text-base font-semibold text-gray-800">
-        404: Page not found
-      </p>
-    </div>
+    <Grid placeItems="center">
+      <Heading mt="40">404: Page not found</Heading>
+      <Link href="/">
+        <Text
+          _hover={{ textDecoration: 'underline' }}
+          color="purple.600"
+          fontWeight="medium"
+          mt="2"
+        >
+          Go to home
+        </Text>
+      </Link>
+    </Grid>
   );
 };
 

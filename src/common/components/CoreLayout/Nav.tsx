@@ -1,4 +1,6 @@
 import { Button, Flex, Stack } from '@chakra-ui/react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { ScholarshipsLogo } from '../Icons/ScholarshipsLogo';
 
@@ -8,6 +10,7 @@ export const HORIZONTAL_PADDING = {
 };
 
 export const Nav = () => {
+  const router = useRouter();
   return (
     <Flex
       alignItems="center"
@@ -17,12 +20,18 @@ export const Nav = () => {
       justifyContent="space-between"
       px={HORIZONTAL_PADDING}
     >
-      <ScholarshipsLogo height="32px" width={{ base: '108px', md: '152px' }} />
+      <Link href="/">
+        <ScholarshipsLogo
+          height="32px"
+          width={{ base: '108px', md: '152px' }}
+        />
+      </Link>
       <Stack direction="row" spacing={{ base: 2, md: 4 }}>
         <Button
           colorScheme="purple"
           size={{ base: 'sm', md: 'md' }}
           variant="solid"
+          onClick={() => router.push('/auth')}
         >
           Create account
         </Button>
@@ -30,6 +39,7 @@ export const Nav = () => {
           colorScheme="purple"
           size={{ base: 'sm', md: 'md' }}
           variant="outline"
+          onClick={() => router.push('/auth')}
         >
           Sign in
         </Button>

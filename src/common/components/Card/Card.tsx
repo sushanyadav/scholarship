@@ -1,7 +1,7 @@
 import { Box, Heading, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 
-export const Card = ({ image, heading, description }) => {
+export const Card = ({ image, heading, description, ...props }) => {
   return (
     <Box
       bg="white"
@@ -10,6 +10,7 @@ export const Card = ({ image, heading, description }) => {
       borderRadius="8px"
       maxW="fit-content"
       shadow="sm"
+      {...props}
     >
       <Image
         alt={heading}
@@ -19,7 +20,7 @@ export const Card = ({ image, heading, description }) => {
         width={437.33}
       />
       <Box p="5">
-        <Heading as="h3" color="gray.9000" fontSize="20px" mb="2">
+        <Heading as="h3" color="gray.900" fontSize="20px" mb="2">
           {heading}
         </Heading>
         <Text fontSize="14px">{description}</Text>
