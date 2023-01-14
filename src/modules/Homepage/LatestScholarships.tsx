@@ -26,7 +26,7 @@ export const LatestScholarships = ({ ...props }) => {
   ];
 
   return (
-    <Box {...props} px={HORIZONTAL_PADDING}>
+    <Box {...props} maxW="1440px" mx="auto" px={HORIZONTAL_PADDING}>
       <Heading
         fontSize={{ base: '24px', md: '30px' }}
         mb={{ base: 4, md: '6' }}

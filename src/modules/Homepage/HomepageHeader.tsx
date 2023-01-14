@@ -5,7 +5,7 @@ import { HORIZONTAL_PADDING } from '@/common/components/CoreLayout/Nav';
 export const HomepageHeader = () => {
   return (
     <Center bg="gray.500" py={{ base: '16', md: '20' }}>
-      <Box px={HORIZONTAL_PADDING} textAlign="center">
+      <Box maxW="1440px" mx="auto" px={HORIZONTAL_PADDING} textAlign="center">
         <Heading color="white" fontSize={{ base: '24px', md: '36px' }} mb="2">
           Find the best scholarships for you
         </Heading>
