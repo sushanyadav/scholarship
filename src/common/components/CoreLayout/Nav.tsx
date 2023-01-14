@@ -1,6 +1,6 @@
 import { Button, Flex, Stack } from '@chakra-ui/react';
 
-import { ScholarshipsLogo } from '../IconComponents/ScholarshipsLogo';
+import { ScholarshipsLogo } from '../Icons/ScholarshipsLogo';
 
 export const HORIZONTAL_PADDING = {
   base: 4,
