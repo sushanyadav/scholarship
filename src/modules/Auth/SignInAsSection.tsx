@@ -53,6 +53,7 @@ export const SignInAsSection = ({ selectedSignInOption }) => {
           mx="auto"
           onClick={() =>
             signIn('google', {
+              selectedSignInOption,
               callbackUrl: '/home',
             })
           }

@@ -38,13 +38,13 @@ export const Nav = () => {
             width={{ base: '108px', md: '152px' }}
           />
         </Link>
-        <Stack direction="row" spacing={{ base: 2, md: 4 }}>
+        <Stack alignItems="center" direction="row" spacing={{ base: 2, md: 4 }}>
           {session ? (
-            <Flex gap="5">
+            <Flex alignItems="center" gap="5">
               <Avatar
-                name={session.user.name}
+                name={session.user?.name}
                 size="sm"
-                src={session.user.image}
+                src={session.user?.image}
               >
                 <AvatarBadge bg="green.500" boxSize="0.8em" />
               </Avatar>

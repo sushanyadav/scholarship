@@ -1,9 +1,15 @@
-import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Spinner, Text } from '@chakra-ui/react';
 import React from 'react';
+import { unstable_getServerSession } from 'next-auth/next';
+import { useSession } from 'next-auth/react';
 
 import { HORIZONTAL_PADDING } from '@/common/components/CoreLayout/Nav';
 
+import { authOptions } from './api/auth/[...nextauth]';
+
 const UserHomepage = () => {
+  const { data: session, status } = useSession();
+
   return (
     <Box
       bg="gray.50"
@@ -20,7 +26,12 @@ const UserHomepage = () => {
       >
         <Box>
           <Heading fontSize={{ base: '24px', md: '30px' }}>
-            Welcome, Saugat
+            Welcome,{' '}
+            {status === 'loading' ? (
+              <Spinner h="4" ml="2" w="4" />
+            ) : (
+              session.user.name
+            )}
           </Heading>
           <Text
             color="gray.600"
@@ -50,5 +61,26 @@ const UserHomepage = () => {
     </Box>
   );
 };
+
+export async function getServerSideProps(context) {
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions,
+  );
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
 
 export default UserHomepage;
