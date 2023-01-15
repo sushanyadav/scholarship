@@ -18,7 +18,6 @@ export const authOptions: NextAuthOptions =
       //   return session;
       // },
       async signIn({ ...rest }): Promise<boolean> {
-        // console.log(rest);
         if (rest.account.provider === 'google') {
           // let client;
 

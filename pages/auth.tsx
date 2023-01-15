@@ -1,12 +1,14 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { useState } from 'react';
-import { getProviders } from 'next-auth/react';
+import { unstable_getServerSession } from 'next-auth';
 
 import { HORIZONTAL_PADDING } from '@/common/components/CoreLayout/Nav';
 import { ChevronLeftIcon } from '@/common/components/Icons';
 
 import { SignInOptionChoosingSection } from '@/modules/Auth/SignInOptionChoosingSection';
 import { SignInAsSection } from '@/modules/Auth/SignInAsSection';
+
+import { authOptions } from './api/auth/[...nextauth]';
 
 const AuthPage = () => {
   const [selectedSignInOption, setSelectedSignInOption] = useState<
@@ -47,5 +49,26 @@ const AuthPage = () => {
     </Flex>
   );
 };
+
+export async function getServerSideProps(context) {
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions,
+  );
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/home',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
 
 export default AuthPage;

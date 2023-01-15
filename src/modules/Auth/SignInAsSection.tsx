@@ -51,12 +51,11 @@ export const SignInAsSection = ({ selectedSignInOption }) => {
         <Button
           colorScheme="purple"
           mx="auto"
-          onClick={() =>
+          onClick={() => {
             signIn('google', {
-              selectedSignInOption,
               callbackUrl: '/home',
-            })
-          }
+            });
+          }}
         >
           Login with Google
         </Button>
