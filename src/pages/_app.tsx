@@ -4,9 +4,14 @@ import type { AppProps as NextAppProps } from 'next/app';
 import { Inter } from '@next/font/google';
 import { NextFont } from '@next/font/dist/types';
 import { SessionProvider } from 'next-auth/react';
+import NProgress from 'nprogress';
+import Router from 'next/router';
+import NextProgress from 'next-progress';
 
 import { CoreLayout } from '@/common/components/CoreLayout';
 import { PageHead } from '@/common/components/PageHead';
+
+NProgress.configure({ showSpinner: true });
 
 const inter: NextFont = Inter({
   variable: '--inter-font',
@@ -40,6 +45,11 @@ export const App = ({
         <Layout>
           <Component {...pageProps} />
         </Layout>
+        <NextProgress
+          color="#805AD5"
+          delay={300}
+          options={{ showSpinner: false }}
+        />
       </ChakraProvider>
     </SessionProvider>
   );

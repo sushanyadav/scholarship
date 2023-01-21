@@ -1,15 +1,23 @@
 import { Box, Center, Heading, Text } from '@chakra-ui/react';
 
-export const SignInOptionCard = ({ description, icon, title, ...props }) => {
+export const RoleCard = ({
+  isSelected,
+  description,
+  icon,
+  title,
+  ...props
+}) => {
   return (
     <Box
+      _hover={{ shadow: 'lg' }}
       bg="white"
-      border="1px solid"
-      borderColor="gray.200"
+      border={isSelected ? '1px solid' : '1px solid'}
+      borderColor={isSelected ? 'purple.400' : 'gray.200'}
       borderRadius="8px"
       p="6"
-      shadow="sm"
+      shadow={isSelected ? 'lg' : 'sm'}
       textAlign="left"
+      transition="0.3s ease-in-out"
       {...props}
     >
       <Center

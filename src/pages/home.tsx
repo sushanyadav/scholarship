@@ -78,6 +78,15 @@ export async function getServerSideProps(context) {
     };
   }
 
+  if (session && !session.user.role) {
+    return {
+      redirect: {
+        destination: '/onboarding',
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {},
   };

@@ -1,9 +1,11 @@
 import {
   Avatar,
   AvatarBadge,
+  Badge,
   Box,
   Button,
   Flex,
+  Spinner,
   Stack,
 } from '@chakra-ui/react';
 import Link from 'next/link';
@@ -18,7 +20,7 @@ export const HORIZONTAL_PADDING = {
 };
 
 export const Nav = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const router = useRouter();
 
@@ -39,15 +41,20 @@ export const Nav = () => {
           />
         </Link>
         <Stack alignItems="center" direction="row" spacing={{ base: 2, md: 4 }}>
-          {session ? (
+          {status === 'loading' ? (
+            <Spinner />
+          ) : session ? (
             <Flex alignItems="center" gap="5">
-              <Avatar
-                name={session.user?.name}
-                size="sm"
-                src={session.user?.image}
-              >
-                <AvatarBadge bg="green.500" boxSize="0.8em" />
-              </Avatar>
+              {session.user?.role && <Badge>{session.user.role}</Badge>}
+              <Link href="/home">
+                <Avatar
+                  name={session.user?.name}
+                  size="sm"
+                  src={session.user?.image}
+                >
+                  <AvatarBadge bg="green.500" boxSize="0.8em" />
+                </Avatar>
+              </Link>
               <Button
                 colorScheme="purple"
                 size={{ base: 'sm', md: 'md' }}
